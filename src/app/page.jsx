@@ -19,7 +19,7 @@ export default function MainPage() {
     setToken(token);
     setUsername(username);
     setLoading(false);
-  });
+  }, []);
   return (
     <>
       {loading ? (

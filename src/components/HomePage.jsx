@@ -18,7 +18,7 @@ export default function HomePage({ logined, username }) {
               href={"/todo"}
               className="p-5 border-2 rounded-2xl bg-zinc-800 hover:bg-zinc-800 text-white"
             >
-              Go to ToDo's
+              Go to ToDo&apos;s
             </Link>
           </div>
         </>
