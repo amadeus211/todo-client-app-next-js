@@ -10,7 +10,7 @@ export default function AddTodo() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("accessToken");
     const username = localStorage.getItem("username");
     setToken(token);
     setUsername(username);

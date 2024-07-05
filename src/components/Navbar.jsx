@@ -15,8 +15,9 @@ export default function Navbar({ logout }) {
 
   const handleLogoutClick = () => {
     router.push("/");
-    localStorage.removeItem("token");
+    localStorage.removeItem("accessToken");
     localStorage.removeItem("username");
+    localStorage.removeItem("refreshToken");
   };
 
   useEffect(() => {
@@ -40,11 +41,11 @@ export default function Navbar({ logout }) {
                 href={"/profile"}
                 className="text-center flex flex-row items-center gap-2"
               >
-                <p className="break-all">
+                <span className="break-all">
                   {username.length > 8 && width < 800
                     ? `${username.slice(0, 8)}...`
                     : username}
-                </p>{" "}
+                </span>{" "}
                 <FaRegUser />
               </Link>
               <button

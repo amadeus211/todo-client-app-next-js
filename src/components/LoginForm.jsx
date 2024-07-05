@@ -31,8 +31,9 @@ export default function LoginForm({ setRegisterForm }) {
 
       if (result.ok) {
         const data = await result.json();
-        localStorage.setItem("token", data.token);
+        localStorage.setItem("accessToken", data.accessToken);
         localStorage.setItem("username", data.username);
+        localStorage.setItem("refreshToken", data.refreshToken);
 
         toast.success("Logged in successfully!");
         router.push("/todo");
@@ -55,8 +56,6 @@ export default function LoginForm({ setRegisterForm }) {
     }
   };
 
-  
-
   return (
     <div className="">
       <form
@@ -73,13 +72,16 @@ export default function LoginForm({ setRegisterForm }) {
           className="border-2 rounded-md border-zinc-200 outline-none focus:border-zinc-900 py-2 pl-5 text-sm placeholder:text-base"
           type="email"
           placeholder="Email"
-          onChange={(e) => {setEmail(e.target.value)}}
-
+          onChange={(e) => {
+            setEmail(e.target.value);
+          }}
           ref={emailInputRef}
-          onFocus={() => handleFocus(emailInputRef,  passwordInputRef)}
+          onFocus={() => handleFocus(emailInputRef, passwordInputRef)}
         />
         <input
-          onChange={(e) => {setPassword(e.target.value)}}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
           value={password}
           className="border-2 rounded-md border-zinc-200 outline-none focus:border-zinc-900 py-2 pl-5"
           type="password"

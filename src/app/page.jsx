@@ -14,7 +14,7 @@ export default function MainPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("accessToken");
     const username = localStorage.getItem("username");
     setToken(token);
     setUsername(username);
@@ -36,7 +36,7 @@ export default function MainPage() {
             </>
           ) : (
             <>
-              <HomePage logined={true} username={username} />
+              <HomePage  />
             </>
           )}
         </>

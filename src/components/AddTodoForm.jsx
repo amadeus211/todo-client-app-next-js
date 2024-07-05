@@ -17,7 +17,7 @@ export default function AddTodoForm() {
       return;
     }
 
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("accessToken");
 
     if (!token) {
       toast.error("No token found. Please log in.");

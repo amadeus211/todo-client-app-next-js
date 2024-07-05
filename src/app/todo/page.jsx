@@ -13,7 +13,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedToken = localStorage.getItem("token");
+    const storedToken = localStorage.getItem("accessToken");
     const storedUsername = localStorage.getItem("username");
     setToken(storedToken);
     setUsername(storedUsername);

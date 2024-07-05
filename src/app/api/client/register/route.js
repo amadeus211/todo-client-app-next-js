@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 
 dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET;
 
 export async function POST(request) {
   const { email, username, password } = await request.json();
@@ -21,12 +22,15 @@ export async function POST(request) {
 
   const newClient = new Client({ email, username, password });
   await newClient.save();
-  const token =  jwt.sign({ id: newClient._id }, JWT_SECRET, {
+  const accessToken = jwt.sign({ id: newClient._id }, JWT_SECRET, {
     expiresIn: "1h",
+  });
+  const refreshToken = jwt.sign({ id: newClient._id }, JWT_REFRESH_SECRET, {
+    expiresIn: "7d",
   });
 
   return NextResponse.json(
-    { message: "Client created", token, username },
+    { message: "Client created", accessToken, refreshToken, username },
     { status: 201 }
   );
 }

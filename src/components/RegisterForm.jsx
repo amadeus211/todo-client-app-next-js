@@ -36,8 +36,9 @@ export default function RegisterForm({ setRegisterForm }) {
         router.push("/todo");
         router.refresh();
         const data = await result.json();
-        localStorage.setItem("token", data.token);
+        localStorage.setItem("accessToken", data.accessToken);
         localStorage.setItem("username", data.username);
+        localStorage.setItem("refreshToken", data.refreshToken);
 
         toast.success("Register in successfully!");
       } else {

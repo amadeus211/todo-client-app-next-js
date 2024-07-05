@@ -28,6 +28,7 @@ export async function GET(request) {
       { status: 200 }
     );
   } catch (error) {
+    console.log(token);
     return NextResponse.json({ message: "Invalid token" }, { status: 401 });
   }
 }

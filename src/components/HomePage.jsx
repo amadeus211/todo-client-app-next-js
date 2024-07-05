@@ -1,18 +1,44 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Link from "next/link";
+import { verifyToken } from "../../utils/auth";
+import Loading from "./Loading";
 
-export default function HomePage({ logined, username }) {
+export default function HomePage() {
+  const [username, setUsername] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const checkToken = async () => {
+      try {
+        const data = await verifyToken();
+        setIsLoggedIn(true);
+        setUsername(data.username);
+      } catch (error) {
+        console.error("Error during token verification or refreshing", error);
+        setIsLoggedIn(false);
+        setUsername("");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    checkToken();
+  }, []);
+
   return (
     <>
-      {logined ? (
+      {loading ? (
+        <Loading />
+      ) : isLoggedIn ? (
         <>
           <Navbar logout={true} />
 
           <div className="flex flex-col gap-5 items-center justify-center h-[80vh] p-6">
-            <div className="flex flex-col space-y-5 text-center tracking-wide	">
-              <h2 className="text-3xl font-bold ">Hi, {username} </h2>
-              <p className="text-xl 	">welcome to ToDo app!</p>
+            <div className="flex flex-col space-y-5 text-center tracking-wide">
+              <h2 className="text-3xl font-bold">Hi, {username}</h2>
+              <p className="text-xl">Welcome to ToDo app!</p>
             </div>
             <Link
               href={"/todo"}

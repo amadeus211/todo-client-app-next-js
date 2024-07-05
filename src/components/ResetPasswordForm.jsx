@@ -28,7 +28,7 @@ export default function ResetPasswordForm() {
 
   const fetchData = async () => {
     try {
-      const token = localStorage.getItem("token");
+      const token = localStorage.getItem("accessToken");
 
       if (!token) {
         throw new Error("No token found");
@@ -180,7 +180,7 @@ export default function ResetPasswordForm() {
           </form>
         </div>
       ) : (
-        <p></p>
+        <p>sdfsf</p>
       )}
     </>
   );
