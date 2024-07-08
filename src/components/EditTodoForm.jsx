@@ -50,6 +50,7 @@ export default function EditTodoForm({ id, title, description }) {
         <Toaster position="bottom-center" />
 
         <input
+          id="newTitle"
           onChange={(e) => {
             setNewTitle(e.target.value);
           }}
@@ -59,6 +60,7 @@ export default function EditTodoForm({ id, title, description }) {
           placeholder="New Title"
         />
         <input
+        id="newDescription"
           onChange={(e) => {
             setNewDescription(e.target.value);
           }}

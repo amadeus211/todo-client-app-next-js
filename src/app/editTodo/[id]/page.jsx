@@ -23,7 +23,6 @@ export default async function EditTodo({ params }) {
   const { title, description } = topic;
   return (
     <>
-      <Navbar logout={true}/>
       <div className="flex items-center justify-center h-[80vh] max-w-lg m-auto  ">
         <EditTodoForm id={id} title={title} description={description} />
       </div>

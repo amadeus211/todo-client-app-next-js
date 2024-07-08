@@ -18,18 +18,9 @@ export default function AddTodo() {
   });
   return (
     <>
-      {token ? (
-        <>
-          <Navbar logout={true} />
-          <div className="flex items-center justify-center h-[80vh] max-w-lg m-auto  ">
-            <AddTodoForm />
-          </div>
-        </>
-      ) : (
-        <>
-          <HomePage logined={false} />
-        </>
-      )}
+      <div className="flex items-center justify-center h-[80vh] max-w-lg m-auto  ">
+        <AddTodoForm />
+      </div>
     </>
   );
 }

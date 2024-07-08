@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
 
-export default function LoginForm({ setRegisterForm }) {
+export default function LoginForm({ setRegisterForm, onLoginSuccess }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -36,10 +36,15 @@ export default function LoginForm({ setRegisterForm }) {
         localStorage.setItem("refreshToken", data.refreshToken);
 
         toast.success("Logged in successfully!");
+
         router.push("/todo");
+
+        router.refresh();
+        onLoginSuccess();
       } else {
         const data = await result.json();
         throw new Error(data.message || "Failed to log in");
+        
       }
     } catch (error) {
       console.log("Error logging in", error);
@@ -68,6 +73,7 @@ export default function LoginForm({ setRegisterForm }) {
         </div>
 
         <input
+          id="email"
           value={email}
           className="border-2 rounded-md border-zinc-200 outline-none focus:border-zinc-900 py-2 pl-5 text-sm placeholder:text-base"
           type="email"
@@ -79,6 +85,7 @@ export default function LoginForm({ setRegisterForm }) {
           onFocus={() => handleFocus(emailInputRef, passwordInputRef)}
         />
         <input
+          id="password"
           onChange={(e) => {
             setPassword(e.target.value);
           }}

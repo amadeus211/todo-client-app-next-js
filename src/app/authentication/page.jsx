@@ -8,7 +8,7 @@ import Navbar from "@/components/Navbar";
 import Loading from "@/components/Loading";
 import HomePage from "@/components/HomePage";
 
-export default function MainPage() {
+export default function AuthPage() {
   const [token, setToken] = useState("");
   const [username, setUsername] = useState();
   const [loading, setLoading] = useState(true);
@@ -26,18 +26,10 @@ export default function MainPage() {
         <Loading />
       ) : (
         <>
-          {!token ? (
-            <>
-              {" "}
-              <div className="flex items-center justify-center h-[80vh] max-w-[20%]  mx-auto">
-                <Authentication />
-              </div>
-            </>
-          ) : (
-            <>
-              <HomePage />
-            </>
-          )}
+          {" "}
+          <div className="flex items-center justify-center h-[80vh] max-w-[20%]  mx-auto">
+            <Authentication />
+          </div>
         </>
       )}{" "}
     </>

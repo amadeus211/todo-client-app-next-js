@@ -5,7 +5,7 @@ import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
-export default function RegisterForm({ setRegisterForm }) {
+export default function RegisterForm({ setRegisterForm, onLoginSuccess }) {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -24,21 +24,26 @@ export default function RegisterForm({ setRegisterForm }) {
       return;
     }
     try {
-      const result = await fetch(`${process.env.NEXT_PUBLIC_API}/client/register`, {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json",
-        },
-        body: JSON.stringify({ password, email, username: login }),
-      });
+      const result = await fetch(
+        `${process.env.NEXT_PUBLIC_API}/client/register`,
+        {
+          method: "POST",
+          headers: {
+            "Content-type": "application/json",
+          },
+          body: JSON.stringify({ password, email, username: login }),
+        }
+      );
 
       if (result.ok) {
         router.push("/todo");
         router.refresh();
+
         const data = await result.json();
         localStorage.setItem("accessToken", data.accessToken);
         localStorage.setItem("username", data.username);
         localStorage.setItem("refreshToken", data.refreshToken);
+        onLoginSuccess();
 
         toast.success("Register in successfully!");
       } else {
@@ -78,6 +83,7 @@ export default function RegisterForm({ setRegisterForm }) {
         <p className=" font-bold text-xl text-zinc-900 ">Create new account</p>
       </div>{" "}
       <input
+        id="email"
         value={email}
         className=" border-2 rounded-md border-zinc-200 outline-none focus:border-zinc-900 py-2 pl-5 text-sm placeholder:text-base "
         type="email"
@@ -91,6 +97,7 @@ export default function RegisterForm({ setRegisterForm }) {
         }
       />
       <input
+        id="username"
         value={login}
         className=" border-2 rounded-md border-zinc-200 outline-none focus:border-zinc-900 py-2 pl-5 text-sm placeholder:text-base "
         type="text"
@@ -104,6 +111,7 @@ export default function RegisterForm({ setRegisterForm }) {
         }
       />
       <input
+        id="password"
         value={password}
         className=" border-2 rounded-md border-zinc-200 outline-none focus:border-zinc-900 py-2 pl-5"
         type="password"

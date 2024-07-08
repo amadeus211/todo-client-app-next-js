@@ -60,12 +60,14 @@ export default function AddTodoForm() {
         <Toaster position="bottom-center" />
         <input
           onChange={(e) => setTitle(e.target.value)}
+          id="title"
           value={title}
           className="border-2 rounded-md border-zinc-200 outline-none focus:border-zinc-900 py-2 pl-5"
           type="text"
           placeholder="Title"
         />
         <input
+          id="description"
           onChange={(e) => setDescription(e.target.value)}
           value={description}
           className="border-2 rounded-md border-zinc-200 outline-none focus:border-zinc-900 py-2 pl-5"

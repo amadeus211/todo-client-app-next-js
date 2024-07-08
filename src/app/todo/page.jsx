@@ -17,7 +17,7 @@ export default function Home() {
     const storedUsername = localStorage.getItem("username");
     setToken(storedToken);
     setUsername(storedUsername);
-    setLoading(false); 
+    setLoading(false);
   }, []);
 
   return (
@@ -26,14 +26,9 @@ export default function Home() {
         <Loading />
       ) : (
         <>
-          {username && token ? (
-            <div className="max-w-full mx-auto mb-10">
-              <Navbar logout={true} />
-              <TodoList />
-            </div>
-          ) : (
-            <HomePage logined={false} />
-          )}
+          <div className="max-w-full mx-auto mb-10">
+            <TodoList />
+          </div>
         </>
       )}
     </>

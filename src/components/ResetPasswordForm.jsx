@@ -39,7 +39,7 @@ export default function ResetPasswordForm() {
           Authorization: `Bearer ${token}`,
         },
       });
-
+      
       if (!result.ok) {
         throw new Error("Failed to fetch todos");
       }
@@ -118,6 +118,7 @@ export default function ResetPasswordForm() {
                 Email
                 <input
                   value={email}
+                  id="email"
                   className=" border-2 rounded-md border-zinc-200 outline-none focus:border-zinc-900 py-2 pl-5 text-sm placeholder:text-[14px] "
                   type="email"
                   placeholder="New email"
@@ -129,6 +130,7 @@ export default function ResetPasswordForm() {
               <label className="flex flex-col gap-1">
                 Username
                 <input
+                id="username"
                   value={username}
                   className=" border-2 rounded-md border-zinc-200 outline-none focus:border-zinc-900 py-2 pl-5 text-sm placeholder:text-[14px] "
                   type="text"
@@ -141,6 +143,7 @@ export default function ResetPasswordForm() {
               <label className="flex flex-col gap-1">
                 Password
                 <input
+                id="password"
                   value={password}
                   className=" border-2 rounded-md border-zinc-200 outline-none focus:border-zinc-900 py-2 pl-5 placeholder:text-[14px]"
                   type="password"

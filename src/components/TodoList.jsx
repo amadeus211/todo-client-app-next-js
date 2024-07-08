@@ -8,10 +8,12 @@ import { CiSquarePlus } from "react-icons/ci";
 import { FaPlus } from "react-icons/fa";
 import { RotatingLines } from "react-loader-spinner";
 import Loading from "./Loading";
+import { useRouter } from "next/navigation";
 
 export default function TodoList() {
   const [todos, setTodos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const router = useRouter();
 
   const fetchTodos = async () => {
     try {
@@ -41,6 +43,7 @@ export default function TodoList() {
   };
 
   useEffect(() => {
+
     fetchTodos();
   }, []);
 

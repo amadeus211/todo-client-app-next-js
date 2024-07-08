@@ -1,26 +1,24 @@
 "use client";
 
-import React from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import LoginForm from "./LoginForm";
 import RegisterForm from "./RegisterForm";
-import { userAgent } from "next/server";
-import Navbar from "./Navbar";
-export default function Authentication() {
-  const [registerForm, setRegisterForm] = useState(false);
 
-  // useEffect(() => {
-  //   localStorage.removeItem("token");
-  // }, []);
+export default function Authentication({ onLoginSuccess }) {
+  const [registerForm, setRegisterForm] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    router.push("/");
+  }, [router]);
 
   return (
     <div>
       {!registerForm ? (
-        <LoginForm setRegisterForm={setRegisterForm} />
+        <LoginForm setRegisterForm={setRegisterForm} onLoginSuccess={onLoginSuccess} />
       ) : (
-        <RegisterForm setRegisterForm={setRegisterForm} />
+        <RegisterForm setRegisterForm={setRegisterForm} onLoginSuccess={onLoginSuccess}/>
       )}
     </div>
   );

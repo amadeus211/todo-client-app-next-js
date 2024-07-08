@@ -7,17 +7,19 @@ import { ConfirmToast } from "react-confirm-toast";
 import { useRouter } from "next/navigation";
 
 let width;
-export default function Navbar({ logout }) {
+export default function Navbar({ logout, handleLogoutSuccess }) {
   const [username, setUsername] = useState("");
   const [show, setShow] = useState(false);
 
   const router = useRouter();
 
   const handleLogoutClick = () => {
-    router.push("/");
+    router.push("/authentication");
+    router.refresh();
     localStorage.removeItem("accessToken");
     localStorage.removeItem("username");
     localStorage.removeItem("refreshToken");
+    handleLogoutSuccess();
   };
 
   useEffect(() => {
